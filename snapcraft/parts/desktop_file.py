@@ -118,7 +118,7 @@ class DesktopFile:
 
         # Rename the desktop file to match the app name. This will help
         # unity8 associate them (https://launchpad.net/bugs/1659330).
-        target = gui_dir / f"{self._app_name}.desktop"
+        target = gui_dir / f"{self._filename}.desktop"
 
         if target.exists():
             # Unlikely. A desktop file in meta/gui/ already existed for

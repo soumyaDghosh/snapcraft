@@ -178,7 +178,7 @@ def _finalize_icon(
     parsed_url = urllib.parse.urlparse(icon)
     parsed_path = Path(parsed_url.path)
     icon_ext = parsed_path.suffix[1:]
-    target_icon_path = Path(gui_dir, f"icon.{icon_ext}")
+    target_icon_path = Path(gui_dir, parsed_path.name)
 
     target_icon_path.parent.mkdir(parents=True, exist_ok=True)
     if parsed_url.scheme in ["http", "https"]:
