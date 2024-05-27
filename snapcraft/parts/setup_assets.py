@@ -178,7 +178,10 @@ def _finalize_icon(
     parsed_url = urllib.parse.urlparse(icon)
     parsed_path = Path(parsed_url.path)
     icon_ext = parsed_path.suffix[1:]
+    emit.debug("GUI dir: ",gui_dir)
+    emit.debug("Path found: ",parsed_path.name)
     target_icon_path = Path(gui_dir, parsed_path.name)
+    emit.debug("Target Icon Path: ", target_icon_path)
 
     target_icon_path.parent.mkdir(parents=True, exist_ok=True)
     if parsed_url.scheme in ["http", "https"]:
@@ -191,6 +194,7 @@ def _finalize_icon(
             prime_dir,
             parsed_path.relative_to("/") if parsed_path.is_absolute() else parsed_path,
         )
+        emit.debug(f"copy icon from {source_path!r} to {target_icon_path!r}")
         if source_path.exists():
             # Local with path relative to prime.
             _copy_file(source_path, target_icon_path)
